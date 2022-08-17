@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Dimension by HTML5 UP</title>
+		<title>Zeke's Personal Website</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -25,16 +25,15 @@
 						</div>
 						<div class="content">
 							<div class="inner">
-								<h1>Dimension</h1>
-								<p>A fully responsive site template designed by <a href="https://html5up.net">HTML5 UP</a> and released<br />
-								for free under the <a href="https://html5up.net/license">Creative Commons</a> license.</p>
+								<h1>Ezequiel "Zeke" Andrüsh</h1>
+								<h2>Sysadmin/SRE</h2>
 							</div>
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#intro">Intro</a></li>
-								<li><a href="#work">Work</a></li>
-								<li><a href="#about">About</a></li>
+								<li><a href="#AboutMe">About Me</a></li>
+								<li><a href="#projects">Projects</a></li>
+								<li><a href="#work">Resumee</a></li>
 								<li><a href="#contact">Contact</a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
 							</ul>
@@ -44,32 +43,138 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Intro -->
-							<article id="intro">
-								<h2 class="major">Intro</h2>
+						<!-- AboutMe -->
+							<article id="AboutMe">
+								<h2 class="major">About Me</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+								<p>I am a SRE/Sysadmin with more than 20 years in experience working with Linux servers, on-premise in the old days and in cloud VMs more recently. I consider myself as a friendly and well tempered guy that prefers to work as a part of a team rather than alone.</p>
+								<p>I am used to learn about new technologies as a way to improve my craft and performance, usually I found fun and enjoyment on carrying some small DIY projects that allow me to improve in my professional life. In the last months I built a small robot using Arduino boards, a Kubernetes cluster on Raspberry Pi and another cluster in a bare metal server following Kelsey Hightower's <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a>. You can check on my <a href="#projects">personal projects</a> section for more on this.</p>
+							</article>
+
+						<!-- Projects -->
+							<article id="projects">
+								<h2 class="projects">Personal Projects</h2>
+								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<p>Since I was a boy I enjoyed fixing (and sometimes breaking) stuff around me. As I grew up I started focusing on IT and in my teen years my mother got my first Desktop PC (wich lasted about a whole month until I dissasemble it). That was my entry point to this fascinating world of making things work and then not work and finally make them work again.</p>
+								<p>My ongoing projects are:
+								<ul>
+									<li> <a href="#k8sTHW">Kubernetes cluster on Bare Metal Server</a></li>
+									<li> <a href="#Balancino">Arduino Robot</a></li>
+									<li> <a href="#rpiCluster">Raspberry Pi k8s Cluster</a></li>
+								</ul>
+								</p>
+							</article>
+							<article id="k8sTHW">
+								<h2 class="k8sTHW">Bare Metal k8s Cluster (The hard way)</h2>
+								<span class="image main"><img src="images/kthw.jpg" alt="" /></span>
+								<p>This is the project I spent most time recently. Some weeks ago with my good friend <a href="https://www.linkedin.com/in/alejandra-jamilis-8775653/">Alejandra</a> figured out that it was going to be a great experience to deploy a Kubernetes cluster on a spare desktop PC I built with spare parts I had at home (see photo above :-P).</p>
+								<p>So we started installing host OS (Debian 11.4) and created 6 VMs using QEMU and KVM. This was the layout:
+								<ul>
+									<li>3 VMs as controllers</li>
+									<li>3 VM as workers</li>
+									<li>1 VM as controllers Load Balancer</li>
+								</ul>
+								We followed Kelsey Hightower's <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a> as well as Drew Viles <a href="https://medium.com/@DrewViles/kubernetes-the-hard-way-on-bare-metal-vms-v1-23-2168f5fe70af">Kubernetes The Hard Way on bare metal/VMs</a> guides. We encountered some roadbumps but I think we can say the task was somewhat straightforward.
+								</p>
+								<p>
+								Once we had our cluster working we started configuring everything needed to get a propoer functional deployment. As Load Balancer we installed <a href="https://metallb.universe.tf/">MetalLB</a> and after that we installed a Persistent Volume Claim using NFS. Once we got everything in place we deployed <a href="https://pi-hole.net/">PiHole</a> as LAN DNS. That's how I got rid of almost all ads on my devices. I will elaborate on a future post on how to do it.
+								</p>
+								<h3>What did we got from this?</h3>
+								<p>
+								First of all, the satisfaction of doing something cool just because we can. Also we got a deeper understanding on how kubernetes networking work on pods, nodes and services level. Also we got a deeper understanding on how the PVC/StorageClasses/Provisioner works as a whole and the roles and clusterroles needed to implement them. Also we got a lot of experience troubleshooting real problems on a real cluster.
+								</p>
+							</article>
+							<article id="Balancino">
+								<h2 class="Balancino">Arduino Robot</h2>
+								<span class="image main"><img src="images/robot.jpg" alt="" /></span>
+								<p>This is by far the most frustrating personal project I ever did (thus the whiskey glass). It started as a way to learn C/++, but the issues I found later made me go in opther directions.</p>
+								<p>I built the chassis and mounted the boards and motors. I did the wiring later and used an old PC power unit to save some money on batteries. It has a MPU6050 gyroscope and two stepper motors for movement. The idea is for it to balance itself on two wheels. All the testing were fine and I started to write the PID code for the movement when something started to fail in a very stranger way. I suspect the motor wiring is not thick enough to transport all the current needed for the steppers. In the next weeks I will upload the code to github and give it another shoot. I learned a lot about electronics trying to figure out this and I got to do some C++ coding also.</p>
+								<p>This is not over yet. I will keep on trying with this little guy</p>
+							</article>
+							<article id="rpiCluster">
+								<h2 class="rpiCluster">Raspi K8s Cluster</h2>
+								<span class="image main"><img src="images/rpik8s.jpg" alt="" /></span>
+								<p>This is my first approach to a k8s clustewr on my own. I got this set of 4 raspi4 boards on sale last year and the first thing I did was to install kubernetes on them. There is one master node and three workers.</p>
+								<p>I use this cluster as a "test" environment where I can try things without risk of break anything on the configuration on my home network. I also intend to use it as an easy to move cluster since I travel a lot with my wife. This way I always have my test environment at hand.</p>
 							</article>
 
 						<!-- Work -->
 							<article id="work">
-								<h2 class="major">Work</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
-							</article>
+								<h2 class="work">Work Experience</h2>
+								<span class="image main"><img src="images/work.jpg" alt="" /></span>
+								<hr>
+								<h3>Personal Data</h3>
+								<p>
+								<li>Date of birth: Dec 4th. 1979</li>
+								<li>Age: 42 Years old</li>
+								<li>Birthplace: La Plata, Argentina</li>
+								</p>
+								<hr>
+								<h3>Languages</h3>
+								<p>
+								<li>Spanish: Native</li>
+								<li>English: Advanced (written and spoken) </li>
+								</p>
+								<hr>
+								<h3>Academic History</h3>
+								<p>
+								<li>Tecnologic National University (La Plata Faculty)</li>
+								Finished: Systems Analyst. G.P.A.: 7,08
+								Ongoing: Systems Engineer: Courses finished. Final Tests 43/45
+								</p>
+								<hr>
+								<h3>Technologies</h3>
+								<p>
+								<li>GNU/Linux: Advanced</li>
+								<li>Filesystems and storage: Advanced</li>
+								<li>Python Scripting: Medium-Advanced</li>
+								<li>Bash Scripting: Advanced</li>
+								<li>Networking: Advanced</li>
+								<li>Docker: Advanced</li>
+								<li>Kubernetes: Medium-Advanced</li>
+								<li>Github: Medium</li>
+								<li>Ansible: Medium</li>
+								<li>Terraform: Basic</li>
+								<li>GCP: Basic</li>   
+								</p>
+								<hr>
+								<h3>Work Experience</h3>
+								<p>
+								<li>Exabeam: NOC Engineer (Dec 2020 - Aug 2021)</li>
+								<p><u>NOC engineer:</u> I was responsible of monitoring all the SaaS client environments and take proactive actions when needed. Also I was responsible of upgrading the environment to a newer version when released. In case of an unexpected issue in any of the environments I was the one to execute the first troubleshooting and try to figure out what was the issue. If the solution was out of my reach my role was to raise a Level3 ticket, notify the client and do the follow up afterwards.</p>
+								<li>Accenture: DevOps Engineer/Infrastructure Sr. Eng. (2018-2020)</li>
+								<p><u>DevOps Engineer:</u> In containers Engineering team I worked on defining and maintaining the standard container base images that are to be consumed by internal Accenture teams to deploy their applications. I also worked developing and maintaining the IaaC terraform modules used to deploy the infrastructure and services on GKE. It was also my responsibility to provide support and assist teams on their effort to move to containers. Providing them good practices and advice on how to move from an on-premise or virtualized server install to containers. I also helped App teams on creation of CI/CD pipelines on Azure DevOps.</p>
+								<p><u>Infrastructure Sr. Engineer:</u> my main role is to define the infrastructure that the Company Internal Operations (CIO) will use to deploy their applications. I worked on defining the standard images, services and procedures on how to deploy Linux Servers (and the services that will run on it) on the company environments (AWS, Azure and on-premise datacenters using Vmware Vsphere virtualization)</p>
+								<li>Water Resource Authority of the Buenos Aires Province (2000-2018)</li>
+								<p><u>Internal ticketing system Admin:</u> My tasks where to analyze different solutions and implement an installation of the selected one. GLPI was the selected one. Once GLPI was installed, I configured and integrated with Autoridad del Agua's user databases and software. An expansion as a second stage is was planned in order to give support to internal users (mainly IT). Were also part of my tasks to give internal courses to GLPI users.
+								</p>
 
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<p><u>Hardware and Software requirements analyst (S.M.A.T. Project):</u> S.M.A.T. stands for Early Alert and Monitoring System. The Buenos Aires Province will measure, monitor, control and model several hydric basins in the province's territory. The S.M.A.T. will have a Datacenter located in the Autoridad del Agua administrative building. This datacenter will host the databases and BI software that will allow to make meteorologic predictions and early alerts in case of an extraordinary atmospheric event. As requirement analyst my job was to define the necessary hardware and software to achieve the desired solution. Also is my job was to identify possible problems in the proposed solution by the contractor and being proactive in finding and defining a viable solution inside the Project specifications. I also was responsible in co-design with the contractor the solutions we may find for each problem encountered.
+								</p>
+								<p><u>Internal tech support:</u> Technical Support in an 12 workstations environment running MS Windows and MS Office. Firewalls and servers administration when Sysadmin in charge went vacations or sick leaves. During year 2005 Windows 2000 PDC Server Administration tasks were performed.
+								</p>					
+								<li>Smart Bridge S.R.L.: IT Manager (2009 - 2016)</li>
+								<p><u>IT and Communications Manager: </u> IT role was created when this start-up company experienced a quick growth and thus, a dedicated area for technology and information systems was needed.Three servers were configured and deployed. The hardware used was two clone PC's and one Dell PowerEdge 2650 Server.</p>
+								<p> One PC had the firewall implemented with IPTables in Linux (Debian) and in the other one acting as backup server with Bacula. In the Dell server was configured as a virtual machine host with XEN (Dom-0). Those VM acted as e-mail server (exim4), file server NFS4, LDAP (OpenLDAP) and web server (Apache2, later migrated to Nginx). There was also an OpenVPN server which managed all the Point to Point connections with the different company branches and the notebooks acting as road warriors. All VPN links were encrypted with 1024 bits SSL keys. This allowed to have an unified network, working online in all the three offices.</p>
+								<p>Seven workstations were migrated from MS Windows to Debian GNU/Linux with OpenOffice.</p>
+								<p>Additionally a Biometric Time&Attendance Control System was implemented in the offices at La Plata Harbor. Security cameras where also installed.</p>
+								</p>	
+								<li>Tecnologic National University (La Plata Faculty) (2003-2005)</li>
+								<p><u>Non-graduate intern:</u> Assistant Instructor of courses and workshops.</p>
+								<li>Justice sector, Buenos Aires Province: Instructor (2002)</li>
+								<p><u>GNU/Linux courses teacher:</u> Creator of content and instructor of training courses for using GNU/Linux servers in the SuSE Linux migration context by the Justice Sector in Buenos Aires Province. Syllabus was : IPTables Firewalls (design and implementation), Server configuration and administration: webserver (Apache 2), e-mail (exim4) , DHCP, NFS and Samba as PDC.</p>
+								<li>OCCAM S.A.: SysAdmin/Instructor (2000 - 2002)</li>
+								<p><u>SysAdmin:</u> Configuation, deploy, maintenance and administration in 3 GNU/Linux Servers (Mandrake, RedHat and Debian distros) which had Fileserver (NFS, SMB), email server (exim) and webserver (Apache 1.2) and a SCO/Unix server as database server (Informix) and telephone answering machine via modem.</p>
+								<p><u>GNU/Linux courses Instructor:</u> Creator of content and instructor of training courses for using GNU/Linux servers and workstations in Buenos Aires Province Public Administration.</p>
+								</p>
+								<hr>
 							</article>
 
 						<!-- Contact -->
-							<article id="contact">
+ 							<article id="contact">
 								<h2 class="major">Contact</h2>
+								<p>Feel free to contact me on my social media below :-)</p>
+								<!-- ERASE FORM
 								<form method="post" action="#">
 									<div class="fields">
 										<div class="field half">
@@ -89,12 +194,11 @@
 										<li><input type="submit" value="Send Message" class="primary" /></li>
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
-								</form>
+								</form> -->
 								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://twitter.com/EzequielAndrush" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/carlos-ezequiel-andrush/" class="icon brands fa-linkedin"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/ezequielandrush" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
 							</article>
 
