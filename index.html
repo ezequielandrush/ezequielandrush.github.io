@@ -33,7 +33,7 @@
 							<ul>
 								<li><a href="#AboutMe">About Me</a></li>
 								<li><a href="#projects">Projects</a></li>
-								<li><a href="#work">Resumee</a></li>
+								<li><a href="#work">Resume</a></li>
 								<li><a href="#contact">Contact</a></li>
 							</ul>
 						</nav>
@@ -47,7 +47,7 @@
 								<h2 class="major">About Me</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 								<p>I am a SRE/Sysadmin with more than 20 years in experience working with Linux servers, on-premise in the old days and in cloud VMs more recently. I consider myself as a friendly and well tempered guy that prefers to work as a part of a team rather than alone.</p>
-								<p>I am used to learn about new technologies as a way to improve my craft and performance, usually I found fun and enjoyment on carrying some small DIY projects that allow me to improve in my professional life. In the last months I built a small robot using Arduino boards, a Kubernetes cluster on Raspberry Pi and another cluster in a bare metal server following Kelsey Hightower's <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a>. You can check on my <a href="#projects">personal projects</a> section for more on this.</p>
+								<p>I am used to learn about new technologies as a way to improve my craft and performance, usually I find fun and enjoyment on carrying some small DIY projects that allows me to improve in my professional life. In the last months I built a small robot using Arduino boards, a Kubernetes cluster on Raspberry Pi and another cluster in a bare metal server following Kelsey Hightower's <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a>. You can check on my <a href="#projects">personal projects</a> section for more on this.</p>
 							</article>
 
 						<!-- Projects -->
@@ -66,7 +66,7 @@
 							<article id="k8sTHW">
 								<h2 class="k8sTHW">Bare Metal k8s Cluster (The hard way)</h2>
 								<span class="image main"><img src="images/kthw.jpg" alt="" /></span>
-								<p>This is the project I spent most time recently. Some weeks ago with my good friend <a href="https://www.linkedin.com/in/alejandra-jamilis-8775653/">Alejandra</a> figured out that it was going to be a great experience to deploy a Kubernetes cluster on a spare desktop PC I built with spare parts I had at home (see photo above :-P).</p>
+								<p>This is the project I spent most time recently. Some weeks ago with my good friend <a href="https://www.linkedin.com/in/alejandra-jamilis-8775653/">Alejandra</a> figured out it was going to be a great experience to deploy a Kubernetes cluster on a spare desktop PC I built with spare parts I had at home (see photo above :-P).</p>
 								<p>So we started installing host OS (Debian 11.4) and created 6 VMs using QEMU and KVM. This was the layout:
 								<ul>
 									<li>3 VMs as controllers</li>
@@ -76,7 +76,7 @@
 								We followed Kelsey Hightower's <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a> as well as Drew Viles <a href="https://medium.com/@DrewViles/kubernetes-the-hard-way-on-bare-metal-vms-v1-23-2168f5fe70af">Kubernetes The Hard Way on bare metal/VMs</a> guides. We encountered some roadbumps but I think we can say the task was somewhat straightforward.
 								</p>
 								<p>
-								Once we had our cluster working we started configuring everything needed to get a propoer functional deployment. As Load Balancer we installed <a href="https://metallb.universe.tf/">MetalLB</a> and after that we installed a Persistent Volume Claim using NFS. Once we got everything in place we deployed <a href="https://pi-hole.net/">PiHole</a> as LAN DNS. That's how I got rid of almost all ads on my devices. I will elaborate on a future post on how to do it.
+								Once we had our cluster working we started configuring everything needed to get a propper functional deployment. As Load Balancer we installed <a href="https://metallb.universe.tf/">MetalLB</a> and after that we installed a Persistent Volume Claim using NFS. Once we got everything in place we deployed <a href="https://pi-hole.net/">PiHole</a> as LAN DNS. That's how I got rid of almost all ads on my devices. I will elaborate on a future post on how to do it.
 								</p>
 								<h3>What did we got from this?</h3>
 								<p>
@@ -86,8 +86,8 @@
 							<article id="Balancino">
 								<h2 class="Balancino">Arduino Robot</h2>
 								<span class="image main"><img src="images/robot.jpg" alt="" /></span>
-								<p>This is by far the most frustrating personal project I ever did (thus the whiskey glass). It started as a way to learn C/++, but the issues I found later made me go in opther directions.</p>
-								<p>I built the chassis and mounted the boards and motors. I did the wiring later and used an old PC power unit to save some money on batteries. It has a MPU6050 gyroscope and two stepper motors for movement. The idea is for it to balance itself on two wheels. All the testing were fine and I started to write the PID code for the movement when something started to fail in a very stranger way. I suspect the motor wiring is not thick enough to transport all the current needed for the steppers. In the next weeks I will upload the code to github and give it another shoot. I learned a lot about electronics trying to figure out this and I got to do some C++ coding also.</p>
+								<p>This is by far the most frustrating personal project I ever did (thus the whiskey glass). It started as a way to learn C/++, but the issues I found later made me go in other directions.</p>
+								<p>I built the chassis and mounted the boards and motors. I did the wiring later and used an old PC power unit to save some money on batteries. It has a MPU6050 gyroscope and two stepper motors for movement. The idea is that the robot stays vertical balancing itself on two wheels. All the testing were fine and I started to write the PID code for the movement when something started to fail in a very stranger way. I suspect the motor wiring is not thick enough to transport all the current needed for the steppers. In the next weeks I will upload the code to github and give it another shoot. I learned a lot about electronics trying to figure out this and I got to do some C++ coding also.</p>
 								<p>This is not over yet. I will keep on trying with this little guy</p>
 							</article>
 							<article id="rpiCluster">
